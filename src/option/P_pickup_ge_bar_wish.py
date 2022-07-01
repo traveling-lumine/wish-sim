@@ -1,12 +1,12 @@
 from multiprocessing import freeze_support
 
 from src.model import CharacterWish
-from src.runner import pair_int_type_runner
+from src.runner import runner_wrapper
 
 
 def worker(args):
-    pickup_thresold, wishes = args
-    wisher = CharacterWish()
+    pickup_thresold, wishes, ip, ig = args
+    wisher = CharacterWish(ip, ig)
     pickup_acc = 0
     wishes_acc = 0
     while wishes_acc < wishes:
@@ -15,7 +15,7 @@ def worker(args):
     return pickup_acc >= pickup_thresold
 
 
-pickup_ge_bar_wish = pair_int_type_runner(worker)
+pickup_ge_bar_wish = runner_wrapper(worker)
 
 
 def main():

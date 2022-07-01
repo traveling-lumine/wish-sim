@@ -27,7 +27,8 @@ def selector():
 
 def wish_by_pickups_sel():
     pickups = get_pickups()
-    mean, maxi, mini = wish_by_pickups(pickups)
+    ip, ig = get_ip_ig()
+    mean, maxi, mini = wish_by_pickups(pickups, ip, ig)
     print(f'The mean number of wishes is {mean}, '
           f'the max number of wishes is {maxi}, '
           f'the min number of wishes is {mini}')
@@ -35,7 +36,8 @@ def wish_by_pickups_sel():
 
 def pickup_by_wishes_sel():
     wishes = get_wishes()
-    mean, maxi, mini = pickup_by_wishes(wishes)
+    ip, ig = get_ip_ig()
+    mean, maxi, mini = pickup_by_wishes(wishes, ip, ig)
     print(f'The mean number of pickups is {mean}, '
           f'the max number of pickups is {maxi}, '
           f'the min number of pickups is {mini}')
@@ -44,7 +46,8 @@ def pickup_by_wishes_sel():
 def pickup_ge_bar_wish_sel():
     pickups = get_pickups()
     wishes = get_wishes()
-    prob, _, _ = pickup_ge_bar_wish(pickups, wishes)
+    ip, ig = get_ip_ig()
+    prob, _, _ = pickup_ge_bar_wish(pickups, wishes, ip, ig)
     print(f'The probability of pickup number satisfied by wishes is {prob}')
 
 
@@ -66,6 +69,22 @@ def get_pickups():
         except ValueError:
             print('Please input a valid number.')
     return pickups
+
+
+def get_ip_ig():
+    ip = None
+    while ip is None:
+        try:
+            ip = int(input('Please input the number of initial pity: '))
+        except ValueError:
+            print('Please input a valid number.')
+    ig = None
+    while ig is None:
+        try:
+            ig = int(input('Please input the guarantee state: '))
+        except ValueError:
+            print('Please input a valid number.')
+    return ip, ig
 
 
 if __name__ == '__main__':

@@ -1,15 +1,11 @@
 from random import random
 
-from src.constant import chara_init_pity, chara_init_guaranteed
-
 
 class CharacterWish:
-    def __init__(self):
+    def __init__(self, init_pity, init_guaranteed):
         self.chance = 0.6e-2
-        self.init_pity = chara_init_pity
-        self.init_guaranteed = chara_init_guaranteed
-        self.pity = self.init_pity
-        self.guaranteed = self.init_guaranteed
+        self.pity = init_pity
+        self.guaranteed = init_guaranteed
 
     def get_once(self):
         if self._get_chance():

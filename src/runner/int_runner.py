@@ -1,15 +1,12 @@
 from multiprocessing import Pool, cpu_count
 
-from src.constant import runner_mult
 
-
-def int_type_runner(worker):
-    def wrapper(int_arg):
-        assert type(int_arg) is int
+def runner_wrapper(worker):
+    def wrapper(*arg):
         count = cpu_count()
         pool = Pool(processes=count)
-        workers = count * runner_mult
-        args = [int_arg] * workers
+        workers = count * 10_000
+        args = [arg] * workers
         res = pool.map(worker, args)
         return sum(res) / workers, max(res), min(res)
 
