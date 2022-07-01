@@ -1,0 +1,5 @@
+/dist/
+/build/
+/.idea/sonarlint/
+__pycache__
+/main.spec
